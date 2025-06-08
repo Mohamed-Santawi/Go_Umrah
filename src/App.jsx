@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import Register from "./pages/Register";
 import Trips from "./pages/Trips";
 import Visas from "./pages/Visas";
+import Transportation from "./pages/Transportation";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/visas" element={<Visas />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/transportation" element={<Transportation />} />
               </Routes>
             </main>
           </div>
