@@ -1,13 +1,46 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 import logo from "../assets/navbar-logo.png";
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
+  const { cartItems } = useCart();
+
+  const cartItemCount = cartItems.length;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const isActive = (path) => {
     return location.pathname === path;
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/home");
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
+  };
+
+  const getUserInitial = () => {
+    if (currentUser?.displayName) {
+      return currentUser.displayName.charAt(0).toUpperCase();
+    }
+    return "U";
   };
 
   return (
@@ -50,9 +83,9 @@ const Header = () => {
                 isActive("/hotels") ? "text-green-800" : ""
               }`}
             >
-              فنادق جو عمرة
+              فنادق
               <span
-                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
                   isActive("/hotels")
                     ? "scale-x-100"
                     : "scale-x-0 group-hover:scale-x-100"
@@ -60,15 +93,30 @@ const Header = () => {
               ></span>
             </Link>
             <Link
-              to="/attractions"
+              to="/trips"
               className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/attractions") ? "text-green-800" : ""
+                isActive("/trips") ? "text-green-800" : ""
               }`}
             >
-              مزارات جو عمرة
+              رحلات
+              <span
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
+                  isActive("/trips")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                } transition-transform duration-300 origin-center`}
+              ></span>
+            </Link>
+            <Link
+              to="/visa"
+              className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
+                isActive("/visa") ? "text-green-800" : ""
+              }`}
+            >
+              تأشيرات
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/attractions")
+                  isActive("/visa")
                     ? "scale-x-100"
                     : "scale-x-0 group-hover:scale-x-100"
                 } transition-transform duration-300 origin-center`}
@@ -80,10 +128,40 @@ const Header = () => {
                 isActive("/transportation") ? "text-green-800" : ""
               }`}
             >
-              مواصلات جو عمرة
+              مواصلات
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
                   isActive("/transportation")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                } transition-transform duration-300 origin-center`}
+              ></span>
+            </Link>
+            <Link
+              to="/attractions"
+              className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
+                isActive("/attractions") ? "text-green-800" : ""
+              }`}
+            >
+              مزارات
+              <span
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
+                  isActive("/attractions")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                } transition-transform duration-300 origin-center`}
+              ></span>
+            </Link>
+            <Link
+              to="/store"
+              className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
+                isActive("/store") ? "text-green-800" : ""
+              }`}
+            >
+              متجر
+              <span
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
+                  isActive("/store")
                     ? "scale-x-100"
                     : "scale-x-0 group-hover:scale-x-100"
                 } transition-transform duration-300 origin-center`}
@@ -107,147 +185,215 @@ const Header = () => {
           </div>
 
           {/* Auth Buttons Section */}
-          <div className="hidden md:flex gap-6 items-center space-x-4 space-x-reverse">
-            <Link
-              to="/login"
-              className="px-2 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-700 hover:text-white transition-all duration-300 transform hover:scale-105 text-sm"
-            >
-              تسجيل الدخول
-            </Link>
-            <Link
-              to="/register"
-              className="text-sm px-2 py-2 bg-green-600 text-white rounded-md border border-transparent hover:bg-white hover:text-green-700 hover:border-green-700 transition-all duration-300 transform hover:scale-105"
-            >
-              إنشاء حساب
-            </Link>
+          <div className="hidden md:flex ml-8 gap-6 items-center space-x-4 space-x-reverse">
+            {currentUser ? (
+              <div className="flex items-center gap-4">
+                <Link
+                  to="/cart"
+                  className="relative text-gray-700 hover:text-green-800 transition-colors duration-300"
+                >
+                  <FaShoppingCart className="h-6 w-6" />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </Link>
+                <div className="relative group">
+                  <button className="cursor-pointer w-10 h-10 rounded-full bg-[#0c8a4d] text-white flex items-center justify-center hover:bg-green-700 transition-colors duration-300">
+                    {getUserInitial()}
+                  </button>
+                  <div className="absolute right-0 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
+                    <button
+                      onClick={handleLogout}
+                      className="cursor-pointer block w-full text-right px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      تسجيل الخروج
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-center gap-3">
+                  <Link
+                    to="/login"
+                    className="px-2 py-2 border border-green-600 text-green-600 rounded-md hover:bg-green-700 hover:text-white transition-all duration-300 transform hover:scale-105 text-sm"
+                  >
+                    تسجيل الدخول
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="text-sm px-2 py-2 bg-green-600 text-white rounded-md border border-transparent hover:bg-white hover:text-green-700 hover:border-green-700 transition-all duration-300 transform hover:scale-105"
+                  >
+                    إنشاء حساب
+                  </Link>
+                </div>
+                <Link
+                  to="/cart"
+                  className="relative text-gray-700 hover:text-green-800 transition-colors duration-300"
+                >
+                  <FaShoppingCart className="h-6 w-6" />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-600 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#0c8a4d]"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
+              <span className="sr-only">Open main menu</span>
+              {!isMenuOpen ? (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
-                )}
-              </svg>
+                </svg>
+              ) : (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
-              to="/home"
-              className={`block text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/home") ? "text-green-800" : ""
-              }`}
-            >
-              الرئيسية
-              <span
-                className={`absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/home")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
-            </Link>
-            <Link
               to="/hotels"
-              className={`block text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/hotels") ? "text-green-800" : ""
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/hotels")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              فنادق جو عمرة
-              <span
-                className={`absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/hotels")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
+              فنادق
             </Link>
             <Link
-              to="/attractions"
-              className={`block text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/attractions") ? "text-green-800" : ""
+              to="/trips"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/trips")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              مزارات جو عمرة
-              <span
-                className={`absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/attractions")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
+              رحلات
+            </Link>
+            <Link
+              to="/visa"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/visa")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
+              }`}
+            >
+              تأشيرات
             </Link>
             <Link
               to="/transportation"
-              className={`block text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/transportation") ? "text-green-800" : ""
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/transportation")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              مواصلات جو عمرة
-              <span
-                className={`absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/transportation")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
+              مواصلات
+            </Link>
+            <Link
+              to="/attractions"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/attractions")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
+              }`}
+            >
+              مزارات
+            </Link>
+            <Link
+              to="/store"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/store")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
+              }`}
+            >
+              متجر
             </Link>
             <Link
               to="/contact"
-              className={`block text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/contact") ? "text-green-800" : ""
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/contact")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
               تواصل معنا
-              <span
-                className={`absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/contact")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
             </Link>
-            <div className="pt-4 space-y-2">
-              <Link
-                to="/login"
-                className="block w-full px-4 py-2 text-center border border-green-600 text-green-600 rounded-md hover:bg-green-700 hover:text-white transition-all duration-300"
-              >
-                تسجيل الدخول
-              </Link>
-              <Link
-                to="/register"
-                className="block w-full px-4 py-2 text-center bg-green-600 text-white rounded-md hover:bg-green-700 transition-all duration-300"
-              >
-                إنشاء حساب
-              </Link>
-            </div>
+          </div>
+
+          <div className="pt-4 pb-3 border-t border-gray-200">
+            {currentUser ? (
+              <div className="space-y-1">
+                <div className="px-4 py-2 text-base font-medium text-gray-800">
+                  {currentUser.displayName || currentUser.email}
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-right px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100"
+                >
+                  تسجيل الخروج
+                </button>
+              </div>
+            ) : (
+              <div className="pt-4 space-y-4">
+                <Link
+                  to="/login"
+                  className="block max-w-[90%] mx-auto px-4 py-2 text-center border border-green-600 text-green-600 rounded-md hover:bg-green-700 hover:text-white transition-all duration-300"
+                >
+                  تسجيل الدخول
+                </Link>
+                <Link
+                  to="/register"
+                  className="block max-w-[90%] mx-auto px-4 py-2 text-center bg-green-600 text-white rounded-md hover:bg-green-700 transition-all duration-300"
+                >
+                  إنشاء حساب
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

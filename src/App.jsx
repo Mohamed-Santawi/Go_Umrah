@@ -14,6 +14,8 @@ import Register from "./pages/Register";
 import Trips from "./pages/Trips";
 import Visas from "./pages/Visas";
 import Transportation from "./pages/Transportation";
+import Store from "./pages/Store";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/transportation" element={<Transportation />} />
+                <Route path="/store" element={<Store />} />
+                <Route path="/payment" element={<Payment />} />
               </Routes>
             </main>
           </div>
