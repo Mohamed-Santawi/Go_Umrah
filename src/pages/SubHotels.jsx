@@ -228,21 +228,7 @@ const SubHotels = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {amenities.map((amenity, index) => (
-                <div
-                  key={index}
-                  className="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition-shadow"
-                >
-                  <div className="text-4xl text-[#0c8a4d] mb-4 flex justify-center">
-                    {amenity.icon}
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900">
-                    {amenity.title}
-                  </h4>
-                </div>
-              ))}
-            </div>
+     
           </div>
         </section>
 

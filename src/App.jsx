@@ -19,7 +19,7 @@ import Payment from "./pages/Payment";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import DataDeletion from "./pages/DataDeletion";
 import ScrollToTop from "./components/ScrollToTop";
-// import About from "./pages/About";
+import VisaApply from "./pages/VisaApply";
 import SubHotels from "./pages/SubHotels";
 import MakkahHotels from "./pages/MakkahHotels";
 import MadinahHotels from "./pages/MadinahHotels";
@@ -51,8 +51,7 @@ function App() {
                 <Route path="/data-deletion" element={<DataDeletion />} />
                 <Route path="/makkah-hotels" element={<MakkahHotels />} />
                 <Route path="/madina-hotels" element={<MadinahHotels />} />
-                {/* <Route path="/about" element={<About />} /> */}
-                {/* <Route path="/subHotels" element={<SubHotels />} /> */}
+                <Route path="/visa-apply" element={<VisaApply />} />
               </Routes>
             </main>
           </div>

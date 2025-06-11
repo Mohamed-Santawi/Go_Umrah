@@ -8,14 +8,6 @@ import { Link } from "react-router-dom";
 const Services = () => {
   const services = [
     {
-      title: "فنادق جو عمرة",
-      description:
-        "مجموعة متنوعة من الفنادق في مكة المكرمة والمدينة المنورة بأسعار تنافسية",
-      link: "/makkah-hotels",
-      linkText: "حجز فندق",
-      image: hotelCard,
-    },
-    {
       title: "رحلات جو عمرة",
       description:
         "باقات متنوعة لرحلات العمرة تناسب جميع الاحتياجات والميزانيات",
@@ -23,6 +15,15 @@ const Services = () => {
       linkText: "عرض الرحلات",
       image: trips,
     },
+    {
+      title: "فنادق جو عمرة",
+      description:
+        "مجموعة متنوعة من الفنادق في مكة المكرمة والمدينة المنورة بأسعار تنافسية",
+      link: "/makkah-hotels",
+      linkText: "حجز فندق",
+      image: hotelCard,
+    },
+
     {
       title: "تأشيرات جو عمرة",
       description:

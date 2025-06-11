@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
-import logo from "../assets/navbar-logo.png";
+import logo from "../assets/intro-logo.png";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -78,21 +78,6 @@ const Header = () => {
               ></span>
             </Link>
             <Link
-              to="/hotels"
-              className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/hotels") ? "text-green-800" : ""
-              }`}
-            >
-              فنادقنا
-              <span
-                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/hotels")
-                    ? "scale-x-100"
-                    : "scale-x-0 group-hover:scale-x-100"
-                } transition-transform duration-300 origin-center`}
-              ></span>
-            </Link>
-            <Link
               to="/trips"
               className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
                 isActive("/trips") ? "text-green-800" : ""
@@ -108,15 +93,31 @@ const Header = () => {
               ></span>
             </Link>
             <Link
-              to="/visa"
+              to="/hotels"
               className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
-                isActive("/visa") ? "text-green-800" : ""
+                isActive("/hotels") ? "text-green-800" : ""
+              }`}
+            >
+              فنادقنا
+              <span
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
+                  isActive("/hotels")
+                    ? "scale-x-100"
+                    : "scale-x-0 group-hover:scale-x-100"
+                } transition-transform duration-300 origin-center`}
+              ></span>
+            </Link>
+
+            <Link
+              to="/visas"
+              className={`text-gray-700 hover:text-green-800 px-3 py-2 relative group ${
+                isActive("/visas") ? "text-green-800" : ""
               }`}
             >
               تأشيراتنا
               <span
-                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
-                  isActive("/visa")
+                className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
+                  isActive("/visas")
                     ? "scale-x-100"
                     : "scale-x-0 group-hover:scale-x-100"
                 } transition-transform duration-300 origin-center`}
@@ -294,16 +295,6 @@ const Header = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
-              to="/hotels"
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive("/hotels")
-                  ? "text-[#0c8a4d] bg-gray-50"
-                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
-              }`}
-            >
-              فنادقنا
-            </Link>
-            <Link
               to="/trips"
               className={`block px-3 py-2 rounded-md text-base font-medium ${
                 isActive("/trips")
@@ -314,9 +305,20 @@ const Header = () => {
               رحلاتنا
             </Link>
             <Link
-              to="/visa"
+              to="/hotels"
               className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive("/visa")
+                isActive("/hotels")
+                  ? "text-[#0c8a4d] bg-gray-50"
+                  : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
+              }`}
+            >
+              فنادقنا
+            </Link>
+
+            <Link
+              to="/visas"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                isActive("/visas")
                   ? "text-[#0c8a4d] bg-gray-50"
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}

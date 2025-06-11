@@ -3,6 +3,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HotelCard from "../components/HotelCard";
 import { FaWifi, FaParking, FaSwimmingPool, FaUtensils } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import {
+  FaStar,
+  FaMapMarkerAlt,
+  FaSpa,
+  FaDumbbell,
+  FaConciergeBell,
+  FaBusAlt,
+} from "react-icons/fa";
 import makkah1 from "../assets/hotels/makkah1.jpg";
 import makkah2 from "../assets/hotels/makkah2.jpg";
 import makkah3 from "../assets/hotels/makkah3.jpg";
@@ -13,6 +22,16 @@ import makkah6 from "../assets/hotels/makkah6.jpg";
 const MakkahHotels = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [priceRange, setPriceRange] = useState("all");
+  const amenities = [
+    { icon: <FaWifi />, title: "واي فاي مجاني" },
+    { icon: <FaUtensils />, title: "مطاعم متنوعة" },
+    { icon: <FaConciergeBell />, title: "خدمة الغرف" },
+    { icon: <FaParking />, title: "موقف سيارات" },
+    { icon: <FaDumbbell />, title: "صالة رياضية" },
+    { icon: <FaSwimmingPool />, title: "مسبح" },
+    { icon: <FaSpa />, title: "سبا" },
+    { icon: <FaBusAlt />, title: "خدمة النقل" },
+  ];
 
   const hotels = [
     {
@@ -122,9 +141,18 @@ const MakkahHotels = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-12">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
-          فنادق مكة المكرمة
-        </h1>
+        <div className="flex justify-between items-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900">
+            فنادق مكة المكرمة
+          </h1>
+          <Link
+            to="/madina-hotels"
+            className="inline-flex items-center px-6 py-3 bg-[#0c8a4d] text-white rounded-lg hover:bg-[#0a6e3d] transition-colors duration-300 shadow-md hover:shadow-lg"
+          >
+            <span className="ml-2">فنادق المدينة المنورة</span>
+            <FaMapMarkerAlt className="text-xl" />
+          </Link>
+        </div>
 
         {/* Search Section */}
         <div className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -150,6 +178,28 @@ const MakkahHotels = () => {
                 <option value="high">فاخر (أكثر من 2500 ريال)</option>
               </select>
             </div>
+          </div>
+        </div>
+
+        {/* Amenities Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            خدمات الفنادق
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {amenities.map((amenity, index) => (
+              <div
+                key={index}
+                className="text-center p-6 bg-white rounded-lg hover:shadow-lg transition-shadow border border-gray-100"
+              >
+                <div className="text-4xl text-[#0c8a4d] mb-4 flex justify-center">
+                  {amenity.icon}
+                </div>
+                <h4 className="text-lg font-semibold text-gray-900">
+                  {amenity.title}
+                </h4>
+              </div>
+            ))}
           </div>
         </div>
 

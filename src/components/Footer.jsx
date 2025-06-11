@@ -25,7 +25,8 @@ const Footer = () => {
             </p>
             <div className="flex gap-3 space-x-2 space-x-reverse pt-4">
               <a
-                href="#"
+                href="https://www.facebook.com/share/p/1Ad59t1RMU/"
+                target="_blank"
                 className="w-10 h-10 rounded-full bg-[#0c8a4d] flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
               >
                 <FaFacebookF className="text-white" />
@@ -60,12 +61,18 @@ const Footer = () => {
             <ul className="space-y-2 mt-1">
               <li>
                 <Link
-                  to="/"
+                  to="/home"
                   className="text-gray-400 hover:text-[#0c8a4d] transition-colors duration-300"
                 >
                   الرئيسية
                 </Link>
               </li>
+              <Link
+                to="/trips"
+                className="text-gray-400 hover:text-[#0c8a4d] transition-colors duration-300"
+              >
+                رحلات جو عمرة
+              </Link>
               <li>
                 <Link
                   to="/hotels"
@@ -90,14 +97,7 @@ const Footer = () => {
                   مواصلات جو عمرة
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/trips"
-                  className="text-gray-400 hover:text-[#0c8a4d] transition-colors duration-300"
-                >
-                  رحلات جو عمرة
-                </Link>
-              </li>
+              <li></li>
               <li>
                 <Link
                   to="/visas"
@@ -124,11 +124,11 @@ const Footer = () => {
               </li>
               <li className="flex gap-2 items-start space-x-3 space-x-reverse">
                 <FaPhoneAlt className="text-[#0c8a4d] mt-1 flex-shrink-0" />
-                <span className="text-gray-400">+966 12 345 6789</span>
+                <span className="text-gray-400">0557123435</span>
               </li>
               <li className="flex gap-2 items-start space-x-3 space-x-reverse">
                 <FaEnvelope className="text-[#0c8a4d] mt-1 flex-shrink-0" />
-                <span className="text-gray-400">info@goumrah.com</span>
+                <span className="text-gray-400">taw3iaaa@gmail.com</span>
               </li>
               <li className="flex gap-2 items-start space-x-3 space-x-reverse">
                 <FaClock className="text-[#0c8a4d] mt-1 flex-shrink-0" />
