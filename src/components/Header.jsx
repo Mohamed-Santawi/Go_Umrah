@@ -83,7 +83,7 @@ const Header = () => {
                 isActive("/hotels") ? "text-green-800" : ""
               }`}
             >
-              فنادق
+              فنادقنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
                   isActive("/hotels")
@@ -98,7 +98,7 @@ const Header = () => {
                 isActive("/trips") ? "text-green-800" : ""
               }`}
             >
-              رحلات
+              رحلاتنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-14 h-[3px] bg-[#0c8a4d] ${
                   isActive("/trips")
@@ -113,7 +113,7 @@ const Header = () => {
                 isActive("/visa") ? "text-green-800" : ""
               }`}
             >
-              تأشيرات
+              تأشيراتنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
                   isActive("/visa")
@@ -128,7 +128,7 @@ const Header = () => {
                 isActive("/transportation") ? "text-green-800" : ""
               }`}
             >
-              مواصلات
+              مواصلاتنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
                   isActive("/transportation")
@@ -143,7 +143,7 @@ const Header = () => {
                 isActive("/attractions") ? "text-green-800" : ""
               }`}
             >
-              مزارات
+              مزاراتنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
                   isActive("/attractions")
@@ -158,7 +158,7 @@ const Header = () => {
                 isActive("/store") ? "text-green-800" : ""
               }`}
             >
-              متجر
+              متجرنا
               <span
                 className={`absolute bottom-[-1px] left-1/2 transform -translate-x-1/2 w-16 h-[3px] bg-[#0c8a4d] ${
                   isActive("/store")
@@ -301,7 +301,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              فنادق
+              فنادقنا
             </Link>
             <Link
               to="/trips"
@@ -311,7 +311,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              رحلات
+              رحلاتنا
             </Link>
             <Link
               to="/visa"
@@ -321,7 +321,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              تأشيرات
+              تأشيراتنا
             </Link>
             <Link
               to="/transportation"
@@ -331,7 +331,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              مواصلات
+              مواصلاتنا
             </Link>
             <Link
               to="/attractions"
@@ -341,7 +341,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              مزارات
+              مزاراتنا
             </Link>
             <Link
               to="/store"
@@ -351,7 +351,7 @@ const Header = () => {
                   : "text-gray-700 hover:text-[#0c8a4d] hover:bg-gray-50"
               }`}
             >
-              متجر
+              متجرنا
             </Link>
             <Link
               to="/contact"

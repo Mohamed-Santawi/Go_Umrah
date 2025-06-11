@@ -16,10 +16,18 @@ import Visas from "./pages/Visas";
 import Transportation from "./pages/Transportation";
 import Store from "./pages/Store";
 import Payment from "./pages/Payment";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import DataDeletion from "./pages/DataDeletion";
+import ScrollToTop from "./components/ScrollToTop";
+// import About from "./pages/About";
+import SubHotels from "./pages/SubHotels";
+import MakkahHotels from "./pages/MakkahHotels";
+import MadinahHotels from "./pages/MadinahHotels";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <CartProvider>
           <div className="flex flex-col min-h-screen">
@@ -39,6 +47,12 @@ function App() {
                 <Route path="/transportation" element={<Transportation />} />
                 <Route path="/store" element={<Store />} />
                 <Route path="/payment" element={<Payment />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/data-deletion" element={<DataDeletion />} />
+                <Route path="/makkah-hotels" element={<MakkahHotels />} />
+                <Route path="/madina-hotels" element={<MadinahHotels />} />
+                {/* <Route path="/about" element={<About />} /> */}
+                {/* <Route path="/subHotels" element={<SubHotels />} /> */}
               </Routes>
             </main>
           </div>

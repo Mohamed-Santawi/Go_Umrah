@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import kaabaImage from "../assets/kaaba.jpg";
 import logoImage from "../assets/intro-logo.png";
-import backgroundAudio from "../assets/umrah-background.mp3";
+import backgroundAudio from "../assets/sound.mp3";
 import { VscUnmute } from "react-icons/vsc";
 import { VscMute } from "react-icons/vsc";
 import { useNavigate } from "react-router-dom";

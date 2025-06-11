@@ -4,13 +4,14 @@ import visa from "../assets/islamic/visa-card.jpg";
 import transportation from "../assets/islamic/transp.jpg";
 import trip from "../assets/islamic/trip.jpg";
 import store from "../assets/islamic/store-card.jpg";
+import { Link } from "react-router-dom";
 const Services = () => {
   const services = [
     {
       title: "فنادق جو عمرة",
       description:
         "مجموعة متنوعة من الفنادق في مكة المكرمة والمدينة المنورة بأسعار تنافسية",
-      link: "#",
+      link: "/makkah-hotels",
       linkText: "حجز فندق",
       image: hotelCard,
     },
@@ -18,7 +19,7 @@ const Services = () => {
       title: "رحلات جو عمرة",
       description:
         "باقات متنوعة لرحلات العمرة تناسب جميع الاحتياجات والميزانيات",
-      link: "#",
+      link: "/trips",
       linkText: "عرض الرحلات",
       image: trips,
     },
@@ -26,14 +27,14 @@ const Services = () => {
       title: "تأشيرات جو عمرة",
       description:
         "خدمة استخراج تأشيرات العمرة والزيارة بسهولة وسرعة لجميع الجنسيات",
-      link: "#",
+      link: "/visa",
       linkText: "طلب تأشيرة",
       image: visa,
     },
     {
       title: "مواصلات جو عمرة",
       description: "خدمات نقل متميزة بين المطارات والفنادق والحرمين الشريفين",
-      link: "#",
+      link: "/transportation",
       linkText: "حجز مواصلات",
       image: transportation,
     },
@@ -41,14 +42,14 @@ const Services = () => {
       title: "مزارات جو عمرة",
       description:
         "جولات سياحية لزيارة أهم المزارات الإسلامية والتاريخية في مكة المكرمة والمدينة المنورة",
-      link: "#",
+      link: "/trips",
       linkText: "عرض المزارات",
       image: trip,
     },
     {
       title: "متجر جو عمرة",
       description: "مستلزمات العمرة والهدايا بأسعار مناسبة وجودة عالية",
-      link: "#",
+      link: "/store",
       linkText: "تسوق الآن",
       image: store,
     },
@@ -90,15 +91,15 @@ const Services = () => {
                 </p>
               </div>
               <div className="my-8">
-                <a
-                  href={service.link}
+                <Link
+                  to={service.link}
                   className="px-5 py-2 text-sm font-semibold bg-[#0c8a4d] text-white rounded-full transition-all duration-300 ease-in-out hover:bg-[#0a6e3d]"
                 >
                   {service.linkText}
                   <span className="mr-2" aria-hidden="true">
                     &rarr;
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
           ))}

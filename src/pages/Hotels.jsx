@@ -10,21 +10,17 @@ const Hotels = () => {
   const hotels = [
     {
       id: 1,
-      name: "فندق مكة المكرمة",
+      name: "فنادق مكة المكرمة",
       location: "مكة المكرمة",
-      rating: 4.5,
-      price: "500 ريال",
+      rating: 4.8,
       image: makaHotels,
-      description: "فندق فاخر يقع على بعد 5 دقائق من المسجد الحرام",
     },
     {
       id: 2,
-      name: "فندق المدينة المنورة",
+      name: "فنادق المدينة المنورة",
       location: "المدينة المنورة",
       rating: 4.8,
-      price: "600 ريال",
       image: madinaHotels,
-      description: "فندق متميز بالقرب من المسجد النبوي",
     },
     // Add more hotels as needed
   ];
@@ -37,8 +33,8 @@ const Hotels = () => {
         description="أفضل الفنادق في مكة المكرمة والمدينة المنورة بأسعار تنافسية"
         image={hotelsHero}
       />
-      <div className="min-h-screen bg-gray-50 pt-24 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="min-h-screen bg-gray-50 pt-28 px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
           {hotels.map((hotel) => (
             <div
               key={hotel.id}
@@ -47,27 +43,27 @@ const Hotels = () => {
               <img
                 src={hotel.image}
                 alt={hotel.name}
-                className="w-full h-48 object-cover rounded-md"
+                className="w-full h-60 object-cover rounded-md"
               />
               <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-semibold text-gray-900">
+                <div className="flex justify-between items-start mb-8">
+                  <h1 className="text-3xl font-semibold text-gray-900 text-center">
                     {hotel.name}
-                  </h3>
-                  <span className="bg-[#0c8a4d] text-white px-3 py-1 rounded-full text-sm">
+                  </h1>
+                  <span className="bg-[#0c8a4d] text-white px-4 py-2 rounded-full text-sm">
                     {hotel.rating} ⭐
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4">{hotel.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-[#0c8a4d] font-semibold">
-                    {hotel.price}
-                  </span>
+                <div className="flex justify-center items-center w-full">
                   <Link
-                    to="/cart"
-                    className="bg-[#0c8a4d] text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-300"
+                    to={`${
+                      hotel.name === "فنادق مكة المكرمة"
+                        ? "/makkah-hotels"
+                        : "/madina-hotels"
+                    }`}
+                    className="bg-[#0c8a4d] w-full max-w-[80%] mx-auto text-center text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors duration-300"
                   >
-                    احجز الآن
+                    عرض الفنادق
                   </Link>
                 </div>
               </div>
