@@ -60,13 +60,11 @@ const Services = () => {
     <div className="bg-[#f9fafb] py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <p className=" section-title font-bold text-center my-8 w-full text-4xl text-[#212529] relative inline-block">
+          <h2 className=" section-title font-bold text-center my-8 w-full text-4xl text-[#212529] relative inline-block">
             خدماتنا
             <span className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-20 h-[3px] bg-[#0c8a4d]"></span>
-          </p>
-          {/* <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            خدماتنا
-          </h2> */}
+          </h2>
+
           <p className="mt-4 text-xl text-gray-500">
             نقدم لكم مجموعة متكاملة من الخدمات لتسهيل رحلة العمرة
           </p>
